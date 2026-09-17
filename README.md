@@ -14,3 +14,17 @@ Fixed-timestep loop (accumulator) with requestAnimationFrame; input via keyboard
 Map + entity state in plain TS structs/arrays; Vite dev server; a couple of Vitest unit tests for the raycaster math and collision.
 
 Done when: npm run dev, move around, shoot/kill enemies, take damage, win or lose in the browser.
+
+# Iteration 1 — visual & content fidelity
+
+Goal: the recognizable Doom look and level vocabulary.
+
+Functional: textured walls/floors/ceilings; sector-based map (variable floor/ceiling heights, steps, pits); billboarded animated sprite enemies/items; doors, switches, lifts, keycards; multiple enemy and weapon types; pickups (ammo/health/armor); distance light falloff and per-sector light levels; sound effects + music; menu and multi-level progression.
+
+Technical:
+
+First rendering upgrade: move to WebGL2. Render walls/floors as textured columns/quads and sprites as camera-facing billboards from a texture atlas; do distance shading in the fragment shader. (Software texturing in JS won't hold framerate — this is the reason to jump to the GPU now.)
+Extend the map format from grid to sectors + linedefs (JSON); write a small loader.
+Web Audio API for SFX/music with a simple asset loader; sprite animation via atlas frame tables.
+
+Done when: a textured, lit, multi-room level with doors, keys, several enemy/weapon types, and sound plays end to end.
